@@ -10,7 +10,10 @@ RUN docker-php-ext-configure intl && \
 RUN git clone https://github.com/BastienF/framadate.git .
 
 RUN php -r "readfile('https://getcomposer.org/installer');" | php && ./composer.phar install
+
 RUN mkdir tpl_c && \
     chown -R www-data:www-data .
+
+RUN a2enmod rewrite ssl headers
 
 ADD php.ini /var/www/html/
